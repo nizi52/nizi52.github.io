@@ -4,37 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <!-- Подключаем CSS -->
     <link rel="stylesheet" href="reset.css"/> 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <!-- Левая часть: логотип + меню -->
-            <div class="header-left">
-                <h1 class="logo">Nizi</h1>
-                <nav class="nav">
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- Правая часть: кнопка темы -->
+            <!-- Логотип слева -->
+            <h1 class="logo">Nizi</h1>
+            
+            <!-- Навигация по центру -->
+            <nav class="nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Кнопка темы справа -->
             <div class="theme-toggle" id="theme-toggle" title="Переключить тему">
                 🌙
             </div>
         </div>
     </header>
-    <!-- Основное содержимое -->
+    
     <main class="content">
-        <!-- Секция About Me -->
-         <section id="about" class="about">
+        <section id="about" class="about">
             <div class="content-container">
                 <h2>About Me</h2>
-                <img src="image/profile.png" width="200" height="200" alt="Profile Picture" class="profile-pic">
+                <img src="image/profile.png" alt="Profile Picture" class="profile-pic">
                 <p>
                     Привет! Я хочу познакомить вас с моим сайтом. Здесь собраны
                     результаты моих проектов в сфере IT. Я только начинаю работать 
@@ -44,13 +43,12 @@
             </div>
          </section>
 
-        <!-- Секция Portfolio -->
         <section id="portfolio" class="portfolio">
             <div class="content-container">
                 <h2>Portfolio</h2>
                 <div class="projects">
                     <div class="project">
-                        <img src="image/project1.png" width="200" height="200" alt="Терминальные шахматы — консольная игра">
+                        <img src="image/project1.png" alt="Терминальные шахматы — консольная игра">
                         <h3>Терминальные шахматы</h3>   
                         <p>Терминальные шахматы – консольная игра с классическими правилами.
                             Особенности:
@@ -59,7 +57,7 @@
                             Ходы вводятся в формате: move <ряд> <колонка> <ряд1> <колонка1>.</p>
                     </div>
                     <div class="project">
-                        <img src="image/project2.png" width="200" height="200" alt="Генератор паролей на Qt">
+                        <img src="image/project2.png" alt="Генератор паролей на Qt">
                         <h3>Генератор паролей(Qt)</h3>
                         <p>Особенности:
                             Генерация сложных паролей с настройками (длина, символы).
@@ -72,17 +70,18 @@
             </div>
         </section>
     </main>
-    <!-- Футер -->
-        <footer id="contact" class="contact">
-            <div class="foot-container">
-                <p>&copy; 2025 nizik. All rights reserved.</p>
-                <nav class="social-links">
-                    <a href="https://github.com/nizi52" target="_blank" rel="noopener">
-                        <img src="image/github.png"  alt="GitHub">
-                    </a>
-                </nav>
-            </div>
-        </footer>
+    
+    <footer id="contact" class="contact">
+        <div class="foot-container">
+            <p>&copy; 2025 nizik. All rights reserved.</p>
+            <nav class="social-links">
+                <a href="https://github.com/nizi52" target="_blank" rel="noopener noreferrer">
+                    <img src="image/github.png" alt="GitHub">
+                </a>
+            </nav>
+        </div>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
-</html>
+</html> 

@@ -1,5 +1,4 @@
 /* === Цветовые переменные === */
-
 :root {
     /* Светлая тема */
     --bg-color: #dfb6b2;
@@ -28,93 +27,115 @@
     --theme-icon: "☀️";
 }
 
-
 /* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
-    transition: 0.5s ease, color 0.5s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 15px;
+    height: 70px;
 }
 
-/* Контейнер для контента */
 .content-container {
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
 /* Header */
 .header {
     background-color: var(--header-bg);
-    padding: 15px 0;
     position: sticky;
-    height: 120px;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px var(--shadow);
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .logo {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
     color: var(--text-color);
     text-shadow: 2px 2px 4px var(--shadow);
     font-weight: bold;
-}
-
-.nav {
     margin: 0;
-    padding: 0;
+    flex-shrink: 0;
 }
 
+/* Навигация */
 .nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    flex: 1;
 }
 
 .nav a {
     text-decoration: none;
     color: var(--link-color);
     font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.2s ease;
 }
 
 .nav a:hover {
     color: var(--link-hover);
 }
 
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--link-color);
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
 /* Content */
 .content {
-    padding: 50px 0;
+    padding: 20px 0;
 }
 
 .about {
+    font-size: 1.3rem;
     text-align: center;
+    padding: 40px 0;
 }
 
 .about h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
     color: var(--text-color);
     text-shadow: 2px 2px 4px var(--shadow);
     font-weight: bold;
@@ -125,34 +146,45 @@ body {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    margin-top: 20px;
+    margin: 25px auto;
+    display: block;
+    border: 4px solid var(--header-bg);
+    box-shadow: 0 4px 10px var(--shadow);
 }
 
 .portfolio {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 0 20px;
+    padding: 20px 0;
 }
 
 .portfolio h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
     color: var(--text-color);
     text-shadow: 2px 2px 4px var(--shadow);
     font-weight: bold;
+    text-align: center;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 .project {
     background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--shadow);
-    transition: transform 0.5s ease;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px var(--shadow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .project:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px var(--shadow);
 }
 
 .project img {
@@ -160,58 +192,223 @@ body {
     height: 200px;
     object-fit: contain;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px;
 }
 
 .project h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.project p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+    flex-grow: 1;
 }
 
 /* Footer */
 .contact {
     background-color: var(--footer-bg);
     color: var(--footer-text);
-    padding: 20px 0;
+    padding: 30px 0;
     text-align: center;
+    margin-top: 40px;
+}
+
+.foot-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
 }
 
 .social-links a {
-    margin: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-links img {
-    width: 30px;
-    height: 30px;
-    filter: invert(1);
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .nav ul {
-        gap: 15px;
-        font-size: 0.9rem;
-    }
-
-    .nav a {
-        font-size: 0.95rem;
-    }
+.social-links a:hover img {
+    transform: scale(1.1);
 }
 
+/* Theme Toggle */
 .theme-toggle {
     cursor: pointer;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: var(--bg-color);
-    box-shadow: 0 2px 5px var(--shadow);
+    box-shadow: 0 3px 8px var(--shadow);
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .theme-toggle:hover {
-    transform: rotate(30deg);
+    transform: rotate(15deg);
+    box-shadow: 0 4px 12px var(--shadow);
 }
 
+/* Мобильная адаптация */
+@media (max-width: 900px) {
+    .container {
+        gap: 10px;
+        padding: 0 15px;
+    }
+    
+    .logo {
+        font-size: 1.9rem;
+    }
+    
+    .nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav a {
+        font-size: 1rem;
+        padding: 3px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 15px;
+        gap: 12px;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+        margin: 0;
+        align-self: flex-start;
+    }
+    
+    .nav ul {
+        width: 100%;
+        justify-content: space-between;
+        gap: 5px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 5px 0;
+        scrollbar-width: thin;
+    }
+    
+    .nav a {
+        font-size: 0.95rem;
+        white-space: nowrap;
+        min-width: 70px;
+        text-align: center;
+        padding: 3px 5px;
+    }
+    
+    .nav a::after {
+        display: none;
+    }
+    
+    .content-container {
+        padding: 30px 15px;
+    }
+    
+    .about h2,
+    .portfolio h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .profile-pic {
+        width: 160px;
+        height: 160px;
+        margin: 20px auto;
+    }
+    
+    .projects {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .project {
+        padding: 20px;
+    }
+    
+    .project img {
+        height: 180px;
+    }
+    
+    .social-links img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.6rem;
+    }
+    
+    .nav ul {
+        gap: 3px;
+    }
+    
+    .nav a {
+        font-size: 0.85rem;
+        min-width: 60px;
+        padding: 2px 3px;
+    }
+    
+    .about h2,
+    .portfolio h2 {
+        font-size: 1.6rem;
+    }
+    
+    .profile-pic {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .project h3 {
+        font-size: 1.4rem;
+    }
+    
+    .project p {
+        font-size: 0.95rem;
+    }
+    
+    .social-links {
+        gap: 15px;
+    }
+    
+    .foot-container p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
