@@ -71,7 +71,7 @@ body {
 .header-left {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
 }
 
 .logo {
@@ -214,3 +214,4 @@ body {
 .theme-toggle:hover {
     transform: rotate(30deg);
 }
+
