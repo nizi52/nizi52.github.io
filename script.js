@@ -51,34 +51,44 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     
-    // Горизонтальный скролл для меню на узких экранах
+    // Горизонтальный скролл для меню на узких экранах с touch поддержкой
     const navList = document.querySelector('.nav ul');
     if (navList) {
         let isDown = false;
         let startX;
         let scrollLeft;
         
+        // Для мыши
         navList.addEventListener('mousedown', (e) => {
             isDown = true;
-            navList.classList.add('active');
             startX = e.pageX - navList.offsetLeft;
             scrollLeft = navList.scrollLeft;
         });
         
         navList.addEventListener('mouseleave', () => {
             isDown = false;
-            navList.classList.remove('active');
         });
         
         navList.addEventListener('mouseup', () => {
             isDown = false;
-            navList.classList.remove('active');
         });
         
         navList.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - navList.offsetLeft;
+            const walk = (x - startX) * 2;
+            navList.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Для touch
+        navList.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX - navList.offsetLeft;
+            scrollLeft = navList.scrollLeft;
+        });
+        
+        navList.addEventListener('touchmove', (e) => {
+            const x = e.touches[0].pageX - navList.offsetLeft;
             const walk = (x - startX) * 2;
             navList.scrollLeft = scrollLeft - walk;
         });
