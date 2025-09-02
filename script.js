@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Обновление иконки темы
     function updateThemeIcon() {
         const currentTheme = html.getAttribute('data-theme');
-        themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+        themeToggle.textContent = currentTheme === 'dark' ? '🔆' : '🌙';
     }
     
     updateThemeIcon();
