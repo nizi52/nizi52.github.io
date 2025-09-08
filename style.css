@@ -12,7 +12,14 @@
     --shadow-hover: rgba(0, 0, 0, 0.12);
     --border-color: #e0e0e0;
     --code-bg: #f1f3f5;
-    --c: rgba(0, 0, 0, -15px);
+    
+    /* Цвета для анимации светлой темы */
+    --gradient-1: #ff6b6b;
+    --gradient-2: #4ecdc4;
+    --gradient-3: #45b7d1;
+    --gradient-4: #96ceb4;
+    --gradient-5: #feca57;
+    --gradient-6: #ff9ff3;
 }
 
 [data-theme="dark"] {
@@ -28,7 +35,14 @@
     --shadow-hover: rgba(0, 0, 0, 0.4);
     --border-color: #30363d;
     --code-bg: #1f2428;
-    --c: #09f
+    
+    /* Цвета для анимации темной темы - более насыщенные */
+    --gradient-1: #ff6b6b;
+    --gradient-2: #48dbfb;
+    --gradient-3: #1dd1a1;
+    --gradient-4: #f368e0;
+    --gradient-5: #ff9f43;
+    --gradient-6: #00d2d3;
 }
 
 /* Глобальные стили */
@@ -49,6 +63,66 @@ body {
     min-height: 100vh;
 }
 
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: currentColor;
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out;
+    opacity: 0.6;
+}
+
+.particle:nth-child(1) {
+    width: 4px;
+    height: 4px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    color: var(--gradient-1);
+}
+
+.particle:nth-child(2) {
+    width: 6px;
+    height: 6px;
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+    color: var(--gradient-2);
+}
+
+.particle:nth-child(3) {
+    width: 3px;
+    height: 3px;
+    top: 80%;
+    left: 30%;
+    animation-delay: 4s;
+    color: var(--gradient-3);
+}
+
+.particle:nth-child(4) {
+    width: 5px;
+    height: 5px;
+    top: 40%;
+    left: 60%;
+    animation-delay: 6s;
+    color: var(--gradient-4);
+}
+
+.particle:nth-child(5) {
+    width: 7px;
+    height: 7px;
+    top: 10%;
+    left: 50%;
+    animation-delay: 8s;
+    color: var(--gradient-5);
+}
+
 button {
   font-family: inherit;
   font-size: 15px;
@@ -65,46 +139,58 @@ button {
   font-weight: 1000;
 }
 
+[data-theme="light"] button {
+    background: #6c5ce7;
+    fill: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] button:hover {
+    background: #5c4cd7;
+}
+
 .social-links button {
     width: 110px;
 }
 
 button span {
-  display: block;
-  margin-left: 0.3em;
-  transition: all 0.3s ease-in-out;
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
 }
 
 button svg {
-  display: block;
-  transform-origin: center center;
-  transition: transform 0.3s ease-in-out;
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
 }
 
 button:hover {
-  background: #000;
+    background: #000;
+}
+
+[data-theme="light"] button:hover {
+    background: #5c4cd7;
 }
 
 button:hover .svg-wrapper {
-  transform: scale(1.25);
-  transition: 0.5s linear;
+    transform: scale(1.25);
+    transition: 0.5s linear;
 }
 
 button:hover svg {
-  transform: translateX(1.2em) scale(1.1);
-  fill: #fff;
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
 }
 
 button:hover span {
-  opacity: 0;
-  transition: 0.5s linear;
+    opacity: 0;
+    transition: 0.5s linear;
 }
 
 button:active {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }
 
-/* Анимированный фон */
 .background-effect {
     position: fixed;
     top: 0;
@@ -113,24 +199,136 @@ button:active {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    background-color: var(--c);
-    opacity: 0.7;
+   }
+
+/* Убираем черный фон для светлой темы */
+[data-theme="light"] .background-effect {
+    background-color: transparent;
+}
+
+/* Затемнение для светлой темы - более прозрачное */
+.background-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 35%, var(--gradient-1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--gradient-2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, var(--gradient-3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 65%, var(--gradient-4) 0%, transparent 50%),
+        radial-gradient(circle at 25% 15%, var(--gradient-5) 0%, transparent 50%),
+        radial-gradient(circle at 85% 90%, var(--gradient-6) 0%, transparent 50%);
+    animation: gradientMove 20s ease-in-out infinite;
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+}
+
+[data-theme="light"] .background-effect::before {
+    opacity: 0.3;
+    mix-blend-mode: soft-light;
 }
 
 .background-effect::after {
-    content: "";
+    content: '';
     position: absolute;
-    inset: 0;
-    z-index: 2;
-    background-image: radial-gradient(
-        circle at 50% 50%,
-        #0000 0,
-        #0000 2px,
-        hsl(0 0% 4%) 2px
-    );
-    background-size: 8px 8px;
-    --f: blur(1em) brightness(6);
-    animation: hii 10s linear infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.05) 10px,
+            rgba(255, 255, 255, 0.05) 20px
+        );
+    animation: linesMove 15s linear infinite;
+    pointer-events: none;
+}
+
+[data-theme="dark"] .background-effect::after {
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(0, 0, 0, 0.1) 10px,
+            rgba(0, 0, 0, 0.1) 20px
+        );
+}
+
+/* Анимации */
+@keyframes gradientMove {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(5deg) scale(1.1);
+    }
+    50% {
+        transform: rotate(-5deg) scale(0.9);
+    }
+    75% {
+        transform: rotate(3deg) scale(1.05);
+    }
+}
+
+@keyframes linesMove {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100px);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-30px) translateX(20px) scale(1.2);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(20px) translateX(-15px) scale(0.8);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translateY(-15px) translateX(10px) scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+/* Пульсирующий эффект */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.background-effect {
+    animation: pulse 10s ease-in-out infinite;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .background-effect::before {
+        animation-duration: 30s;
+        opacity: 0.2;
+    }
+    
+    .particle {
+        display: none;
+    }
 }
 
 @keyframes hii {
@@ -142,6 +340,7 @@ button:active {
     }
 }
 
+/* Основной градиентный фон */
 .background-effect {
     background-color: #000;
     background-image: 
@@ -303,15 +502,6 @@ button:active {
     }
 }
 
-/* Затемнение для светлой темы */
-[data-theme="light"] .background-effect::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.7);
-}
-
 /* Контейнеры и общее оформление */
 .container {
     max-width: 1200px;
@@ -366,6 +556,7 @@ button:active {
     gap: 2rem;
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
 .nav a {
@@ -449,6 +640,10 @@ button:active {
 .cta-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3);
+}
+
+[data-theme="light"] .cta-button:hover {
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.2);
 }
 
 .hero-visual {
@@ -575,9 +770,17 @@ section {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+[data-theme="light"] .project {
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.1);
+}
+
 .project:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px var(--shadow-hover);
+}
+
+[data-theme="light"] .project:hover {
+    box-shadow: 0 15px 30px rgba(108, 92, 231, 0.15);
 }
 
 .project-image img {
@@ -710,6 +913,26 @@ section {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Переключатель темы */
+.theme-toggle {
+    cursor: pointer;
+    font-size: 1.4rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
 /* Адаптивность */
 @media (max-width: 968px) {
     .hero-container {
@@ -795,4 +1018,9 @@ section {
         padding: 1.5rem;
     }
     
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
 }

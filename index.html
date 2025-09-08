@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru"> <!-- Сменил на русский -->
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +8,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Подключим современный шрифт -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-     <div class="background-effect"></div>
+    <div class="background-effect">
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
     <header class="header">
         <div class="container">
             <a href="#" class="logo">Nizi<span class="logo-dot">.</span></a>
@@ -23,8 +30,13 @@
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
+            <!-- Добавляем кнопку переключения темы -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+                🌙
+            </button>
         </div>
     </header>
+
     <main class="content">
         <section id="hero" class="hero">
             <div class="content-container hero-container">
@@ -150,7 +162,6 @@
                     </div>
                     <span>Github</span>
                     </button>
-                    <!-- Можно добавить другие соцсети позже -->
                 </nav>
             </div>
             <div class="footer-bottom">
