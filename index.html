@@ -1,74 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru"> <!-- Сменил на русский -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Nizi | Портфолио Разработчика</title>
+    <meta name="description" content="Портфолио начинающего FullStack-разработчика. Проекты, навыки и контакты.">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Подключим современный шрифт -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+     <div class="background-effect"></div>
     <header class="header">
         <div class="container">
-            <h1 class="logo">Nizi</h1>
+            <a href="#" class="logo">Nizi<span class="logo-dot">.</span></a>
             <nav class="nav">
                 <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
-            <div class="theme-toggle" id="theme-toggle" title="Переключить тему">
-                🌙
-            </div>
         </div>
     </header>
     <main class="content">
+        <section id="hero" class="hero">
+            <div class="content-container hero-container">
+                <div class="hero-text">
+                    <h1>Начинающий <span class="text-accent">FullStack-разработчик</span></h1>
+                    <p>Создаю функциональные и интересные проекты. Открыт для новых возможностей и сотрудничества.</p>
+                    <a href="#portfolio" class="cta-button">Смотреть работы</a>
+                </div>
+            </div>
+        </section>
         <section id="about" class="about">
             <div class="content-container">
-                <h2>About Me</h2>
-                <img src="image/profile.png" alt="Profile Picture" class="profile-pic">
-                <p>
-                    Привет! Я хочу познакомить вас с моим сайтом. Здесь собраны
-                    результаты моих проектов в сфере IT. Я только начинаю работать 
-                    в этой области, и мне очень важно, чтобы вы
-                    оценили мои достижения.
-                </p>
+                <h2 class="section-title"><span>Обо мне</span></h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="image/profile.png" alt="Фото профиля" class="profile-pic">
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            Я начинающий разработчик, увлеченный созданием интересных и полезных IT-проектов.
+                        </p>
+                        <p>
+                            В настоящее время я активно изучаю различные технологии и фреймворки, чтобы повышать свой уровень и создавать более сложные и качественные продукты.
+                        </p>
+                        <div class="skills-tags">
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Qt</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C# - в процессе обучения</span>
+                            <span class="skill-tag">JavaScript - в процессе обучения</span>
+                            <span class="skill-tag">HTML/CSS - в процессе обучения</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </section>
+        </section>
 
         <section id="portfolio" class="portfolio">
             <div class="content-container">
-                <h2>Portfolio</h2>
+                <h2 class="section-title"><span>Мои проекты</span></h2>
                 <div class="projects">
                     <div class="project">
-                        <img src="image/project1.png" alt="Терминальные шахматы — консольная игра">
-                        <h3>Терминальные шахматы</h3>   
-                        <p>Терминальные шахматы – консольная игра с классическими правилами.
-                            Особенности:
-                            Поддержка всех ходов (рокировка, взятие на проходе, превращение пешки).
-                            Проверка шаха и мата.
-                            Ходы вводятся в формате: move <ряд> <колонка> <ряд1> <колонка1>.</p>
+                        <div class="project-image">
+                            <img src="image/project1.png" alt="Терминальные шахматы — консольная игра">
+                        </div>
+                        <div class="project-content">
+                            <h3>Терминальные шахматы</h3>
+                            <p>Классические шахматы в терминале с поддержкой всех правил: рокировка, взятие на проходе, превращение пешки, проверка шаха и мата.</p>
+                            <ul class="project-features">
+                                <li>Консольный интерфейс</li>
+                                <li>Полный набор шахматных правил</li>
+                                <li>Чистый Python</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="project">
-                        <img src="image/project2.png" alt="Генератор паролей на Qt">
-                        <h3>Генератор паролей(Qt)</h3>
-                        <p>Особенности:
-                            Генерация сложных паролей с настройками (длина, символы).
-                            Простой интерфейс с кнопкой генерации и копирования.
-                            Поддержка сохранения паролей (опционально).
-                            Минималистичный, но функциональный инструмент для создания безопасных паролей.
-                        </p>
+                        <div class="project-image">
+                            <img src="image/project2.png" alt="Генератор паролей на Qt">
+                        </div>
+                        <div class="project-content">
+                            <h3>Генератор паролей (Qt)</h3>
+                            <p>Десктопное приложение для генерации безопасных паролей с настраиваемыми параметрами и возможностью копирования.</p>
+                            <ul class="project-features">
+                                <li>Графический интерфейс</li>
+                                <li>Настройка сложности</li>
+                                <li>Быстрое копирование</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">Qt</span>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="project">
-                        <img src="https://bereznyak72.github.io/img/blockchat-black.png " alt="Blockchat — безопасный мессенджер">
-                        <h3>Blockchat</h3>   
-                        <p>BlockChat — это мессенджер с прямой peer-to-peer связью между
-                             пользователями. Ваши сообщения передаются напрямую,
-                            без хранения на серверах.
-                        </p>
-                        <button onclick="window.open('https://bereznyak72.github.io/blockchat-site/', '_blank')" class="button">
-                            Подробнее
-                        </button>
+                        <div class="project-image">
+                            <img src="https://bereznyak72.github.io/img/blockchat-black.png" alt="Blockchat — безопасный мессенджер">
+                            <p class="tech-tag" style="text-align: center; background-color: #ff000071;">Временно приостановлен</p>
+                        </div>
+                        <div class="project-content">
+                            <h3>Blockchat</h3>
+                            <p>P2P мессенджер с прямой связью между пользователями. Сообщения передаются напрямую, без хранения на серверах.</p>
+                            <ul class="project-features">
+                                <li>P2P архитектура</li>
+                                <li>Без серверного хранения</li>
+                                <li>Приватность</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">Networking</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <button onclick="window.open('https://bereznyak72.github.io/blockchat-site/', '_blank')" class="project-button">
+                                Узнать больше
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,16 +130,34 @@
     </main>
     
     <footer id="contact" class="contact">
-        <div class="foot-container">
-            <p>&copy; 2025 nizik. All rights reserved.</p>
-            <nav class="social-links">
-                <a href="https://github.com/nizi52 " target="_blank" rel="noopener noreferrer">
-                    <img src="image/github.png" alt="GitHub">
-                </a>
-            </nav>
+        <div class="content-container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Связаться со мной</h3>
+                    <p>Открыт для предложений о сотрудничестве и новых проектах</p>
+                </div>
+                <nav class="social-links">
+                    <button onclick="window.open('https://github.com/nizi52', '_blank')">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                        <svg
+                        width="28px" height="28px"
+                        viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" 
+                        fill="#000000" class="bi bi-github">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        </div>
+                    </div>
+                    <span>Github</span>
+                    </button>
+                    <!-- Можно добавить другие соцсети позже -->
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 nizik. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-    
     <script src="script.js"></script>
 </body>
 </html>
