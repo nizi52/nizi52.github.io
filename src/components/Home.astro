@@ -1,0 +1,164 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from './Arrow.astro';
+import Terminal from './Terminal.tsx';
+import HeroScene from './HeroScene.tsx';
+import { ui, links, skills, moreWork, type Lang } from '../data/content';
+import { projects } from '../data/projects';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const homePath = lang === 'ru' ? '/' : '/en/';
+const altPath = lang === 'ru' ? '/en/' : '/';
+const tickerItems = [...t.ticker, ...t.ticker];
+const terminal = {
+  ru: {
+    title: 'nizi@portfolio',
+    greeting: 'привет. команды:',
+    unknown: 'нет такой команды: {cmd}. попробуй help',
+    commands: {
+      help: ['about, skills, works, contact, clear'],
+      about: t.about.lines,
+      skills: skills.ru.map((s) => `${s.name}: ${s.items}`),
+      works: projects.map((p) => `${p.title.ru}: ${p.demo ?? p.code}`),
+      contact: [`telegram ${links.telegramHandle}`, links.github],
+    },
+  },
+  en: {
+    title: 'nizi@portfolio',
+    greeting: 'hi. commands:',
+    unknown: 'command not found: {cmd}. try help',
+    commands: {
+      help: ['about, skills, works, contact, clear'],
+      about: t.about.lines,
+      skills: skills.en.map((s) => `${s.name}: ${s.items}`),
+      works: projects.map((p) => `${p.title.en}: ${p.demo ?? p.code}`),
+      contact: [`telegram ${links.telegramHandle}`, links.github],
+    },
+  },
+}[lang];
+---
+
+<Base lang={lang} homePath={homePath} altPath={altPath}>
+  <section id="top" class="relative min-h-[calc(100svh-3.5rem)] overflow-hidden">
+    <HeroScene client:only="react" loading={t.hero.loading} />
+    <div class="wrap relative z-10 flex min-h-[calc(100svh-3.5rem)] flex-col justify-end pb-10 pt-16">
+      <h1 class="display text-[clamp(4.5rem,11.5vw,12rem)]">
+        {t.hero.lines.map((line) => <span class="block">{line}</span>)}
+      </h1>
+      <div class="mt-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <p class="max-w-xl text-lg text-muted md:text-xl">{t.hero.line}</p>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href={links.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-base bg-accent px-6 py-3 font-medium text-bg hover:bg-accent-hover"
+          >{t.hero.cta}</a>
+          <a
+            href="#works"
+            class="rounded-base border border-line bg-bg px-6 py-3 hover:border-accent-text hover:text-accent-text"
+          >{t.hero.secondary}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="overflow-hidden border-y border-line py-4" aria-hidden="true">
+    <div class="ticker-track flex w-max gap-10 whitespace-nowrap">
+      {tickerItems.map((item) => (
+        <span class="display text-3xl text-muted md:text-5xl">{item}<span class="ml-10 text-accent-text">/</span></span>
+      ))}
+    </div>
+  </div>
+
+  <section id="works" class="wrap py-16 md:py-24">
+    <h2 class="display reveal mb-10 text-[clamp(3.5rem,12vw,10rem)]">{t.works.title}</h2>
+    <ul class="grid gap-5 md:grid-cols-2">
+      {projects.map((p, i) => (
+        <li class:list={['reveal', i === 0 && 'md:col-span-2']}>
+          <a
+            href={p.demo ?? p.code}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex h-full min-h-72 flex-col justify-between gap-12 rounded-base border border-line bg-raised/25 p-6 hover:border-accent-text md:p-10"
+          >
+            <span class="flex items-baseline justify-between gap-4 text-sm text-muted">
+              <span>{String(i + 1).padStart(2, '0')} · {p.kind[lang]}</span>
+              {p.status[lang] && <span class="text-accent-text">{p.status[lang]}</span>}
+            </span>
+            <span class="flex flex-col gap-4">
+              <span class="display text-[clamp(2.4rem,5vw,4.5rem)] group-hover:text-accent-text">
+                {p.title[lang].split(' ').slice(0, -1).join(' ')}{' '}<span class="whitespace-nowrap">{p.title[lang].split(' ').at(-1)}<Arrow class="ml-3" scale={0.6} /></span>
+              </span>
+              <span class="max-w-xl text-lg text-muted">{p.summary[lang]}</span>
+              {p.stack.length > 0 && <span class="text-sm text-muted">{p.stack.join(', ')}</span>}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="about" class="border-t border-line pb-10 pt-20 md:pb-12 md:pt-24">
+    <div class="wrap grid gap-12 md:grid-cols-[1fr_1fr]">
+      <div class="reveal flex flex-col justify-between gap-10">
+        <h2 class="display text-[clamp(3.5rem,12vw,10rem)]">{t.about.title}</h2>
+        <Terminal client:visible {...terminal} />
+      </div>
+      <div class="reveal flex flex-col justify-end">
+        <div>
+          {t.about.lines.map((line) => (
+            <p class="display text-[clamp(2.4rem,5.6vw,4.6rem)]">{line}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap pb-16 pt-10 md:pb-24 md:pt-12">
+    <h2 class="display reveal mb-10 text-[clamp(3.5rem,12vw,10rem)]">{t.skills.title}</h2>
+    <ol class="border-t border-line">
+      {skills[lang].map((s, i) => (
+        <li class="reveal grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-1 border-b border-line py-6 md:grid-cols-[4rem_17rem_1fr] md:items-baseline">
+          <span class="text-sm text-muted">{String(i + 1).padStart(2, '0')}</span>
+          <span class="display text-3xl md:text-4xl">{s.name}</span>
+          <span class="col-start-2 text-xl text-muted md:col-start-3 md:text-2xl md:leading-snug">{s.items}</span>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section id="more" class="border-t border-line py-16 md:py-24">
+    <div class="wrap">
+      <h2 class="display reveal mb-10 text-[clamp(3.5rem,12vw,10rem)]">{t.more.title}</h2>
+      <ul class="border-t border-line">
+        {moreWork[lang].map((m) => (
+          <li class="reveal border-b border-line">
+            <a href={m.href} target="_blank" rel="noopener noreferrer" class="group flex flex-col gap-1 py-5 md:flex-row md:items-baseline md:justify-between">
+              <span class="display text-3xl group-hover:text-accent-text md:text-4xl">{m.title}<Arrow class="ml-3" scale={0.6} /></span>
+              <span class="text-muted">{m.note}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="border-t border-line py-16 md:py-24">
+    <div class="wrap grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
+      <div>
+        <h2 class="display reveal text-[clamp(3.5rem,13vw,11rem)]">{t.contact.title}</h2>
+        <p class="mt-6 text-muted">{t.contact.hint}</p>
+      </div>
+      <div class="flex flex-wrap gap-3 md:flex-col">
+        <a href={links.telegram} target="_blank" rel="noopener noreferrer" class="rounded-base bg-accent px-6 py-4 text-center text-lg font-medium text-bg hover:bg-accent-hover">Telegram {links.telegramHandle}</a>
+        <a href={links.github} target="_blank" rel="noopener noreferrer" class="rounded-base border border-line px-6 py-4 text-center text-lg hover:border-accent-text hover:text-accent-text">GitHub nizi52</a>
+      </div>
+    </div>
+  </section>
+</Base>

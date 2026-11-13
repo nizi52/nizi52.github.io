@@ -1,0 +1,327 @@
+@import "tailwindcss";
+@import "@fontsource-variable/cormorant-garamond";
+@import "@fontsource-variable/onest";
+
+:root {
+  --bg: #0b1020;
+  --bg-raised: #131a30;
+  --fg: #f1e8c8;
+  --muted: #b4bdd2;
+  --line: #25304f;
+  --accent: #e9b93a;
+  --accent-hover: #f5cd5c;
+  --accent-text: #f2c95a;
+  --radius: 4px;
+}
+
+:root[data-theme="light"] {
+  --bg: #a8c2de;
+  --bg-raised: #97b4d4;
+  --fg: #0e1a36;
+  --muted: #223458;
+  --line: #7f9dc2;
+  --accent: #1c2b5e;
+  --accent-hover: #2c4086;
+  --accent-text: #5e3500;
+  color-scheme: light;
+}
+
+:root:not([data-theme="light"]) {
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-display: "Cormorant Garamond Variable", "Times New Roman", serif;
+  --font-sans: "Onest Variable", system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --radius-base: var(--radius);
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  scrollbar-color: var(--line) var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 560;
+  line-height: 0.95;
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+  text-transform: lowercase;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding-inline: 2.5rem;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes pulse-bg {
+  50% {
+    background-color: var(--line);
+  }
+}
+
+.skeleton {
+  background-color: var(--bg-raised);
+  animation: pulse-bg 1.6s ease-in-out infinite;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker 70s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .ticker-track,
+  .skeleton {
+    animation: none;
+  }
+}
+
+.bh {
+  display: flex;
+  width: 8rem;
+  height: 8rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+}
+
+.bh-curve {
+  width: 180%;
+  height: 180%;
+  position: absolute;
+  animation: bh-rotate 8s linear infinite;
+  fill: transparent;
+}
+
+.bh-curve text {
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  font: 1.2em var(--font-sans);
+  fill: var(--fg);
+  filter: drop-shadow(0 2px 8px black);
+}
+
+.bh-hole {
+  z-index: -1;
+  display: flex;
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.bh-circle {
+  z-index: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, black 25%, white 35%, white 100%);
+  box-shadow: 0 0 2rem #c2babb;
+  align-items: center;
+  justify-content: center;
+}
+
+.bh-circle::after {
+  z-index: 0;
+  position: absolute;
+  content: "";
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid white;
+  background: radial-gradient(circle at center, black 35%, white 60%, white 100%);
+  box-shadow: 0 0 5rem #c2babb;
+  filter: blur(4px);
+  animation: bh-pulse linear infinite 2s alternate-reverse;
+}
+
+.bh-circle::before {
+  z-index: 1;
+  content: "";
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid #fff;
+  box-shadow: 3px 3px 10px #c2babb, inset 0 0 1rem #fff;
+  border-radius: 50%;
+  top: 5rem;
+  filter: blur(0.5px);
+  animation: bh-rotate linear infinite 3s;
+}
+
+.bh-disc {
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  width: 5rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #fff 80%, #353535 90%, white 100%);
+  filter: blur(1rem) brightness(130%);
+  border: 1rem solid white;
+  box-shadow: 0 0 3rem #d7c4be;
+  transform: rotate3d(1, 1, 1, 220deg);
+  animation: bh-pulse-disc linear infinite 2s alternate-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.bh-disc::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  width: 5rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #fff 80%, #353535 90%, white 100%);
+  filter: blur(3rem);
+  border: 1rem solid white;
+  box-shadow: 0 0 6rem #d7c4be;
+  animation: bh-pulse linear infinite 2s alternate-reverse;
+}
+
+@keyframes bh-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bh-pulse {
+  from {
+    box-shadow: 0 0 3rem #c2babb;
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 0 5rem #c2babb;
+    transform: scale(1.09);
+  }
+}
+
+@keyframes bh-pulse-disc {
+  from {
+    box-shadow: 0 0 3rem #c2babb;
+    transform: rotate3d(1, 1, 1, 220deg) scale(1);
+  }
+  to {
+    box-shadow: 0 0 5rem #c2babb;
+    transform: rotate3d(1, 1, 1, 220deg) scale(0.95);
+  }
+}
+
+:root[data-theme="light"] .bh-hole {
+  filter: invert(1);
+}
+
+.toggle {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.toggle:hover {
+  border-color: var(--accent-text);
+}
+
+.toggle .icon {
+  grid-area: 1 / 1;
+  transition: transform 500ms;
+}
+
+.icon--moon {
+  transition-delay: 200ms;
+}
+
+.icon--sun {
+  transform: scale(0);
+}
+
+:root[data-theme="light"] .icon--moon {
+  transform: rotate(360deg) scale(0);
+}
+
+:root[data-theme="light"] .icon--sun {
+  transition-delay: 200ms;
+  transform: scale(1) rotate(360deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle .icon {
+    transition: none;
+  }
+}

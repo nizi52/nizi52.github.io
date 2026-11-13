@@ -1,0 +1,13 @@
+---
+interface Props {
+  dir?: 'up-right' | 'left';
+  scale?: number;
+  class?: string;
+}
+
+const { dir = 'up-right', scale = 1, class: cls } = Astro.props;
+---
+
+<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true" class:list={['inline-block', cls]} style={`width:${scale}em;height:${scale}em`}>
+  {dir === 'up-right' ? <path d="M4 12L12 4M5.5 4H12v6.5" /> : <path d="M13 8H3M7.5 3.5L3 8l4.5 4.5" />}
+</svg>

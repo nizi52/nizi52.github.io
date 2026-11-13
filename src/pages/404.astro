@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base lang="ru" homePath="/" altPath="/en/" title="404 | nizi" description="Страница не найдена.">
+  <section class="wrap flex min-h-[calc(100svh-3.5rem)] flex-col justify-center py-16">
+    <p class="text-sm text-muted">404</p>
+    <h1 class="display mt-4 text-[clamp(4.5rem,16vw,14rem)]">такой страницы нет</h1>
+    <p class="mt-14 max-w-xl text-lg text-muted md:text-xl">Ссылка устарела или в адресе опечатка. Всё нужное есть на главной.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/" class="rounded-base bg-accent px-6 py-3 font-medium text-bg hover:bg-accent-hover">на главную</a>
+      <a href="/en/" class="rounded-base border border-line px-6 py-3 hover:border-accent-text hover:text-accent-text">home (EN)</a>
+    </div>
+  </section>
+</Base>
